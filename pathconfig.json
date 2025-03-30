@@ -1,0 +1,64 @@
+{
+    "content_created": {
+        "local_scenepacks": {},
+        "drafts": {
+            "adobe": {},
+            "editor": {}
+        },
+        "FINAL": {}
+    },
+    "content_saved": {
+        "data": {},
+        "downloaded": {
+            "audios": {},
+            "videos": {}
+        }
+    },
+    "sm_accounts": {
+        "%name%": {
+            "tasks": {
+                "config": ".json"
+            }
+        }
+    },
+    "TEMP": {},
+    "traceback": {
+        "logs": {},
+        "maintenance": ".txt"
+    },
+    "trash": {},
+    "lib": {
+        "analysts": {
+            "audio": {},
+            "video": {
+                "security": {
+                    "config": ".json"
+                },
+                "system_instruction": ".txt"
+            }
+        },
+        "cloud": {
+            "megacloud": {
+                "security": {
+                    "config": ".json"
+                }
+            }
+        },
+        "dataproc": {
+            "videodata": {
+                "filtering_settings": ".json",
+                "wids_base": ".json"
+            },
+            "scenepack": {},
+            "myvideo": {},
+            "config": ".json"
+        },
+        "modules": {
+            "moded": {}
+        },
+        "planning": {
+            "planning": ".json"
+        },
+        "runners": {}
+    }
+}

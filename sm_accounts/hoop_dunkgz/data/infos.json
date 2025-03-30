@@ -1,0 +1,59 @@
+{
+    "identity": {
+        "name": "hoop_dunkgz",
+        "pseudo_name": "Basketball",
+        "niche": "Basketball Humor",
+        "email": "basketball@gmail.com",
+        "language": "english",
+        "bio": "Basketball Humor"
+    },
+    "operations": {
+        "find_videos": {
+            "success_probability": 0.4,
+            "tasks": [
+                {
+                    "enabled": true,
+                    "tasks_frequencies": {
+                        "uploads_ids": 0.8,
+                        "queries": 0.2
+                    },
+                    "scrape_data": {
+                        "uploads_ids": [
+                            "UUoDfZzwJNFJ2lVgF41tUX0A",
+                            "UUcMGbm0EYWh1SZZ8MsM75tw",
+                            "UUWJ2lWNubArHWmf3FIHbfcQ",
+                            "UUvFIKpU9Uc0_iCeVfMXvuNA",
+                            "UUOIaQxIvcpPjxgSaYmqaE6g",
+                            "UU4qOcb4LTWo3KSzMx7uC5IQ"
+                        ],
+                        "queries": [
+                            "basketball dunk compilation no watermark",
+                            "best basketball plays compilation no watermark",
+                            "basketball highlights compilation no watermark",
+                            "Stephen Curry hot shots compilation no watermark",
+                            "Lebron James highlights compilation no watermark"
+                        ]
+                    }
+                },
+                {
+                    "enabled": true,
+                    "attempt_limit_per_video": {
+                        "YouTube": 3
+                    },
+                    "time_limit_per_video": {
+                        "YouTube": 600
+                    },
+                    "download_func_names": {
+                        "YouTube": [
+                            "yt_dlp",
+                            "pytube"
+                        ]
+                    }
+                },
+                {
+                    "enabled": true
+                }
+            ]
+        }
+    }
+}

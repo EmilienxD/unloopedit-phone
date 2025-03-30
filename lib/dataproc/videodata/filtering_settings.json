@@ -1,0 +1,40 @@
+{
+    "TikTok": {
+        "min_duration": 1.0,
+        "max_duration": 120.0,
+        "min_fps": 24.0,
+        "max_fps": 120.0,
+        "min_width": 576,
+        "min_height": 1024,
+        "max_width": 3840,
+        "max_height": 2160,
+        "excluded_langs": ["ar", "pl", "zh-cn", "uk", "mk", "ru"],
+        "min_age_in_hours": 5,
+        "max_age_in_days": 730,
+        "min_ratio_views_days": [100, 1],
+        "views_reach": 50000,
+        "min_ratio_likes_days": [10, 1],
+        "likes_reached": 8000,
+        "min_ratio_comms_days": [1, 1],
+        "comms_reached": 50
+    },
+    "YouTube": {
+        "min_duration": 30.0,
+        "max_duration": 7200.0,
+        "min_fps": 24.0,
+        "max_fps": 120.0,
+        "min_width": 1024,
+        "min_height": 576,
+        "max_width": 3840,
+        "max_height": 2160,
+        "excluded_langs": ["ar", "pl", "zh-cn", "uk", "mk", "ru"],
+        "min_age_in_hours": 24,
+        "max_age_in_days": 2555,
+        "min_ratio_views_days": [500, 1],
+        "views_reach": 10000,
+        "min_ratio_likes_days": [20, 1],
+        "likes_reached": 500,
+        "min_ratio_comms_days": [2, 1],
+        "comms_reached": 20
+    }
+}

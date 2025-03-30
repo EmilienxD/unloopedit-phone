@@ -1,0 +1,173 @@
+{
+    "identity": {
+        "name": "basketball",
+        "pseudo_name": "Basketball",
+        "niche": "Basketball Humor",
+        "email": "basketball@gmail.com",
+        "language": "english",
+        "bio": "Basketball Humor"
+    },
+    "tasks": {
+        "T01_scrape_texts": {
+            "enabled": false,
+            "min_target_value": 1,
+            "settings": {
+                "user_mode": false,
+                "method_cycle": 10,
+                "task_names": [
+                    "usernames",
+                    "hashtags",
+                    "song_ids"
+                ]
+            }
+        },
+        "T02_scrape_videos": {
+            "enabled": false,
+            "min_target_value": 1,
+            "settings": {
+                "method_cycle": 10,
+                "task_names": [
+                    "uploads_ids",
+                    "queries"
+                ]
+            }
+        },
+        "T03_download_videos": {
+            "enabled": false,
+            "min_target_value": 1,
+            "settings": {
+                "attempt_limit_per_video": {
+                    "TikTok": 8,
+                    "YouTube": 3
+                },
+                "time_limit_per_video": {
+                    "TikTok": 30,
+                    "YouTube": 600
+                },
+                "download_func_names": {
+                    "TikTok":
+                        [
+                            "ssstik",
+                            "selenium",
+                            "watermarkremover"
+                        ],
+                    "YouTube": [
+                        "yt_dlp",
+                        "pytube"
+                    ]
+                }
+            }
+        },
+        "T04_analyze_ChatGPT": {
+            "enabled": false,
+            "min_target_value": 1,
+            "settings": {
+                "target_niches": [
+                    "Basketball Humor"
+                ],
+                "send_frame": true
+            }
+        },
+        "T05_standardize_videos": {
+            "enabled": false,
+            "min_target_value": 1,
+            "settings": {
+            }
+        },
+        "T06_split_videos": {
+            "enabled": false,
+            "min_target_value": 1,
+            "settings": {
+                "cliping_count_per_video": 3,
+                "random_min_clip_time_range": [0.5, 5.0],
+                "random_max_clip_time_range": [2.0, 10.0],
+                "random_threshold_range": [22, 28],
+                "random_nbr_clips_limit_range": [10, 150]
+            }
+        },
+        "T07_create_texts": {
+            "enabled": false,
+            "min_target_value": 1,
+            "settings": {
+                "target_languages": [
+                    "english",
+                    "french"
+                ]
+            }
+        },
+        "T08_create_videos": {
+            "enabled": false,
+            "min_target_value": 1,
+            "settings": {
+                "random_max_clips_objs_count_range": [5, 10],
+                "random_max_clips_count_range": [15, 25],
+                "random_min_clips_count_range": [7, 15],
+                "random_min_total_duration_range": [8.0, 12.0],
+                "random_max_total_duration_range": [15.0, 20.0]
+            }
+        }
+    },
+    "scraping":     {
+        "TikTok": {
+            "usernames": [
+                "hoop.wizard2",
+                "hoop.mcrushed",
+                "silent.dzz",
+                "sharphoops",
+                "zzzhoops",
+                "hoop.demon_d1",
+                "hoop.crashout_",
+                "hoop.mf",
+                "lebron8122",
+                "grizzbucks",
+                "hoop.lordx",
+                "hoop.angel",
+                "hoop.lightskin0",
+                "haessik"
+            ],
+            "song_ids": [
+                "7365726174990142251",
+                "7393400841724234529",
+                "7373754381663750955",
+                "7356042312964819758"
+            ],
+            "hashtags": [
+                "NBA"
+            ]
+        },
+        "YouTube": {
+            "uploads_ids": [
+                "UUoDfZzwJNFJ2lVgF41tUX0A",
+                "UUcMGbm0EYWh1SZZ8MsM75tw",
+                "UUWJ2lWNubArHWmf3FIHbfcQ",
+                "UUvFIKpU9Uc0_iCeVfMXvuNA",
+                "UUOIaQxIvcpPjxgSaYmqaE6g",
+                "UU4qOcb4LTWo3KSzMx7uC5IQ"
+            ],
+            "queries": [
+                "basketball dunk compilation no watermark",
+                "best basketball plays compilation no watermark",
+                "basketball highlights compilation no watermark",
+                "Stephen Curry hot shots compilation no watermark",
+                "Lebron James highlights compilation no watermark"
+            ]
+        }
+    },
+    "videos_build": {
+        "description": "",
+        "hashtags": [
+            "hoopdemon",
+            "hoopbums",
+            "hoopers",
+            "hoopmf",
+            "basketball",
+            "real",
+            "viral",
+            "fyp"
+        ],
+        "presets": [
+            "slow_zoom_flash",
+            "agressive_shake"
+        ]
+    }
+}

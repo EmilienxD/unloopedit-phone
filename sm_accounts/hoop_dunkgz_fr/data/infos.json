@@ -1,0 +1,31 @@
+{
+    "identity": {
+        "name": "basketball",
+        "pseudo_name": "Basketball",
+        "niche": "Basketball Humor",
+        "email": "basketball@gmail.com",
+        "language": "english",
+        "bio": "Basketball Humor"
+    },
+    "goals": {
+        "minimum_daily_posts": 3,
+        "maximum_daily_posts": 10
+    },
+    "videos_build": {
+        "description": "",
+        "hashtags": [
+            "hoopdemon",
+            "hoopbums",
+            "hoopers",
+            "hoopmf",
+            "basketball",
+            "real",
+            "viral",
+            "fyp"
+        ],
+        "presets": [
+            "basketball_humor_slow_flash_zoom",
+            "basketball_humor_agressive_shake"
+        ]
+    }
+}

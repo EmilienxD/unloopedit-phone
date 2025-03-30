@@ -1,0 +1,116 @@
+This file contains all the information concerning the maintenance that must be done for the project to function correctly over time.
+
+
+###
+TikTokScraper Maintenance
+
+$
+Expired/invalid ms_token
+- Error Code: TikTokScraper001
+- Description: The ms_token for TikTokAPI needs to be refreshed periodically.
+- Resolution: Follow these steps to get a new ms_token:
+  1. Remove the expired ms_tokens from the designated file: `path/to/ms_token.txt`.
+  2. Log in to your TikTok account.
+  3. Open DevTools.
+  4. Go to Application -> Cookies -> ms_token.
+  5. Copy and paste the new ms_token in the designated file: `path/to/ms_token.txt`, ensuring the appropriate file structure.
+$
+
+$
+API Rate Limit Exceeded
+- Error Code: TikTokScraper002
+- Description: API requests exceed the allowed rate limit. The limit for the TikTokAPI is 600 requests per day.
+- Resolution: Follow these steps to solve the rate limit issue:
+  [optional] Ensure that the TikTokAPI rate limit hasn't changed.
+  [optional] Check if your accounts are not banned from TikTok.
+  1. Wait until tomorrow for more requests.
+$
+###
+
+###
+Google Applications Maintenance
+
+$
+Refresh Google Credentials and Tokens
+- Error Code: Google001
+- Description: Google credentials and tokens need to be refreshed periodically (approximately each month) to ensure continued access.
+- Resolution: Follow these steps to get new credentials and token JSON files:
+  1. Remove the expired credentials and token JSON files.
+  2. Go to the Google Developer Console at https://console.cloud.google.com/apis/credentials.
+  3. Download the new credentials JSON file for the concerned application.
+  4. Rename the downloaded file to 'credentials' and place it in the designated folder `path/to/your_app_OAuth`.
+  5. Rerun the failed code.
+  6. You will be redirected to a validation page; allow the application to make modifications to your account.
+$
+
+$
+Google API Rate Limit Exceeded
+- Error Code: Google002
+- Description: API requests exceed the allowed rate limit. The limit for the Google API is 1000 requests per day.
+- Resolution: Follow these steps to solve the rate limit issue:
+  1. Verify if the rate limit has been adjusted by checking the Google API Console.
+  2. Reduce the frequency of API requests.
+  3. Wait until the rate limit resets (usually at midnight PST).
+$
+
+$
+Storage limit exceeded
+- Error Code: Google003
+- Description: Their is no more available storage on Google Drive accounts.
+- Resolution: Follow these steps to resolve the issue:
+  1. Clear useless files and directories to free up space.
+  2. Create new Google Drive accounts.
+  [optional] Find a new way to stock data.
+$
+
+$
+Google oauth2 refresh_token not found
+- Error Code: Google004
+- Description: The refresh_token for Google API is not found.
+- Resolution: Follow these steps to resolve the issue:
+  1. Remove the invalid credentials.json and token.json file.
+  2. Go to https://myaccount.google.com/u/0/permissions
+  3. Remove all the Google API permissions.
+  4. Rerun the code.
+  5. You will be redirected to a validation page; allow the application to make modifications to your account.
+$
+###
+
+###
+Selenium Maintenance
+
+$
+Expired/invalid element identifier
+- Error Code: Selenium001
+- Description: The element identifier (e.g., XPATH, TAGNAME, ID) used in the Selenium script is either expired or invalid.
+- Resolution: Follow these steps to resolve the issue:
+  1. Verify the correctness of the element identifier in the Selenium script.
+  2. Update the identifier if the web page structure has changed.
+  3. Ensure the element is available in the current context of the web page.
+  4. Rerun the Selenium script after making the necessary updates.
+  5. Chech the Internet connexion quality.
+$
+###
+
+###
+System Maintenance
+
+$
+Storage limit exceeded
+- Error Code: System001
+- Description: The folder has reached its storage limit, preventing further storage of data.
+- Resolution: Follow these steps to resolve the issue:
+  1. Clear useless files and directories to free up space.
+  2. Add an external hard drive or upgrade the existing storage capacity.
+$
+
+$
+Incomplete workspace
+- Error Code: System002
+- Description: An essential file is not found, leading to an incomplete workspace. This can happen if a file was removed or moved unintentionally.
+- Resolution: Follow these steps to resolve the issue:
+  1. Verify the location and presence of all essential files.
+  2. Restore any missing files from backups if available.
+  3. Ensure files are correctly placed in their expected directories.
+$
+###
