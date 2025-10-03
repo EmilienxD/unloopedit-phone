@@ -5,6 +5,7 @@ if platform != 'darwin':
 try:
     import argparse
     import os
+    import subprocess
     import shutil
     import requests
 
@@ -40,6 +41,11 @@ try:
 
             shutil.rmtree(UNZIPPED_FOLDER)
             os.remove(ZIP)
+            
+            requirements_path = os.path.join(folder, 'requirements.txt')
+            if os.path.exists(requirements_path):
+                # Use --use-deprecated=legacy-resolver to avoid dependency conflicts with unstable module mega.py
+                subprocess.run(['pip', 'install', '--use-deprecated=legacy-resolver', '-r', requirements_path])
             print('Project built successfully.')
 
         except Exception as e:
