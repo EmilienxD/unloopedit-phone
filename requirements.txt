@@ -1,0 +1,6 @@
+pyperclip; sys_platform == "win32"
+dotenv
+pg8000
+requests
+mega.py
+tenacity==9.1.2
