@@ -56,7 +56,8 @@ try:
             requirements_path = os.path.join(folder, 'requirements.txt')
             if os.path.exists(requirements_path):
                 # Use --use-deprecated=legacy-resolver to avoid dependency conflicts with unstable module mega.py
-                subprocess.run(['pip', 'install', '--use-deprecated=legacy-resolver', '-r', requirements_path], check=True)
+                subprocess.run(['pip', 'install', '--use-deprecated=legacy-resolver', '-r', requirements_path], 
+                             check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
             
             if env_backup:
                 print('SUCCESS:Project built successfully and .env file restored.')
