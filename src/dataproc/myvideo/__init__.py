@@ -15,7 +15,7 @@ from src.dataproc.com import _ComE, _ComES, DBContext
 
 from src.uploaders import UPLOADERS
 from src.dataproc.accounts import get_platforms
-from src.niches import COMMON_NICHE, Niche
+from src.niches import COMMON_NICHE
 
 
 class Global(metaclass=GlobalPostLoad):
@@ -131,8 +131,7 @@ class MyVideo(_M, _ComE):
         elif isinstance(niche, Enum):
             niche = niche.value
         if niche and (niche != COMMON_NICHE):
-            assert niche in (n.value for n in Niche), f'Target niche: {niche} not in allowed niches: {", ".join((n.value for n in Niche))}'
-            self._niche = Niche[niche].value if isinstance(niche, str) else niche.value
+            self._niche = niche if isinstance(niche, str) else niche.value
         else:
             self._niche = COMMON_NICHE
 
