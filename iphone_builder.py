@@ -19,6 +19,13 @@ try:
         UNZIPPED_FOLDER = ZIP.removesuffix('.zip')
         GITHUB_FOLDER = os.path.join(UNZIPPED_FOLDER, f'{repo}-{branch}')
 
+        # Save .env file if it exists
+        env_file = os.path.join(folder, '.env')
+        env_backup = None
+        if os.path.exists(env_file):
+            env_backup = os.path.join(os.path.dirname(folder) or '.', '.env.backup')
+            shutil.copy2(env_file, env_backup)
+
         if os.path.exists(folder):
             shutil.rmtree(folder)
         
@@ -42,14 +49,25 @@ try:
             shutil.rmtree(UNZIPPED_FOLDER)
             os.remove(ZIP)
             
+            # Restore .env file if it was backed up
+            if env_backup and os.path.exists(env_backup):
+                shutil.move(env_backup, env_file)
+                
             requirements_path = os.path.join(folder, 'requirements.txt')
             if os.path.exists(requirements_path):
                 # Use --use-deprecated=legacy-resolver to avoid dependency conflicts with unstable module mega.py
-                subprocess.run(['pip', 'install', '--use-deprecated=legacy-resolver', '-r', requirements_path])
-            print('Project built successfully.')
+                subprocess.run(['pip', 'install', '--use-deprecated=legacy-resolver', '-r', requirements_path], check=True)
+            
+            if env_backup:
+                print('SUCCESS:Project built successfully and .env file restored.')
+            else:
+                print('SUCCESS:Project built successfully.')
 
         except Exception as e:
             shutil.rmtree(folder)
+            # Clean up .env backup if it exists
+            if env_backup and os.path.exists(env_backup):
+                os.remove(env_backup)
             raise
 
     if __name__ == '__main__':
