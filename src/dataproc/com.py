@@ -7,7 +7,7 @@ from datetime import datetime
 from enum import Enum
 
 from src.modules.paths import PathLike
-from src.modules.display import _Logger, Logger
+from src.modules.display import Logger, Logger
 from src.modules.basics.ulist import UList
 
 from src.config import Paths
@@ -126,7 +126,7 @@ class _Com(_DB):
     _db_updated: bool
     DBContext: DBContext
     _sdata: dict[str, dict[str, ty.Any]]
-    logger: _Logger
+    logger: Logger
     metadata: str
     parent_path: PathLike
     path: PathLike

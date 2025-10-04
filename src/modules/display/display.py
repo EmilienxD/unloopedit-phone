@@ -3,7 +3,7 @@ import logging
 
 from datetime import datetime
 
-from src.modules.paths import Path, PathLike
+from ..paths import Path, PathLike
 
 
 class LoggerConfig:
@@ -19,16 +19,43 @@ class LoggerConfig:
     @classmethod
     def set_stderr(cls, stderr) -> None:
         cls.STDERR = stderr
-        for l in _Logger.all_loggers:
+        for l in Logger.all_loggers:
             for h in (l._mess.handlers + l._sep.handlers):
                 if not isinstance(h, logging.FileHandler):
                     h.stream = cls.STDERR
 
 
-class _Logger:
+class Logger:
 
-    all_loggers: list['_Logger'] = []
-    date_format = "%d-%m-%Y_%H'%M"
+    all_loggers: list['Logger'] = []
+    date_format = "%d-%m-%Y_%H-%M-%S"
+    
+    def __new__(cls,
+            name: str | None = None,
+            log_dir_path: PathLike | None = None,
+            max_backup_count: int | None = None,
+            separator_char: str | None = None,
+            format: str | None = None):
+        """
+        Prevents creating a new logger if one with the same config already exists.
+        """
+        norm_name = name.split('.')[-1] if name is not None else LoggerConfig.NAME
+        norm_log_dir_path = str(log_dir_path) if log_dir_path else str(LoggerConfig.LOG_DIR_PATH)
+        norm_max_backup_count = max_backup_count if max_backup_count is not None else LoggerConfig.MAX_BACKUP_COUNT
+        norm_separator_char = separator_char if separator_char is not None else LoggerConfig.SEPARATOR_CHAR
+        norm_format = format if format is not None else LoggerConfig.FORMAT
+
+        for logger in cls.all_loggers:
+            if (
+                logger.name == norm_name and
+                str(logger.log_file_path.parent) if logger.log_file_path else None == norm_log_dir_path and
+                logger.max_backup_count == norm_max_backup_count and
+                logger.separator_char == norm_separator_char and
+                getattr(logger._mess, 'formatter', None) and
+                getattr(logger._mess.formatter, '_fmt', None) == norm_format
+            ):
+                return logger
+        return super().__new__(cls)
 
     def __init__(self,
             name: str | None = None,
@@ -37,7 +64,7 @@ class _Logger:
             separator_char: str | None = None,
             format: str | None = None):
         
-        _Logger.all_loggers.append(self)
+        Logger.all_loggers.append(self)
 
         self.name = name.split('.')[-1] if name is not None else LoggerConfig.NAME
         log_dir_path = Path(log_dir_path, 'Directory', assert_exists=True) if log_dir_path else LoggerConfig.LOG_DIR_PATH
@@ -46,11 +73,11 @@ class _Logger:
             if max_backup_count is not None:
                 assert max_backup_count >= 0, f'max_backup_count need to be positive | current ({max_backup_count})'
                 all_log_file_paths = [path for path in log_dir_path if path.extension == '.log']
-                all_log_file_paths.sort(key=lambda x: datetime.strptime(x.name.replace('log_', ''), _Logger.date_format))
+                all_log_file_paths.sort(key=lambda x: datetime.strptime(x.name.replace('log_', ''), Logger.date_format))
                 while (len(all_log_file_paths) - max_backup_count) > 0:
                     all_log_file_paths.pop(0).remove(send_to_trash=False)
                     
-            self.log_file_path = Path(log_dir_path * f"log_{datetime.now().strftime(_Logger.date_format)}.log", 'File')
+            self.log_file_path = Path(log_dir_path * f"log_{datetime.now().strftime(Logger.date_format)}.log", 'File')
             if not self.log_file_path.exists:
                 self.log_file_path()
         else:
@@ -159,7 +186,7 @@ class _Logger:
         if not skippable:
             raise Exception(msg)
 
-    def __eq__(self, _logger: '_Logger') -> bool:
+    def __eq__(self, _logger: 'Logger') -> bool:
         return self.name == _logger.name
     
     def close(self) -> None:
@@ -172,31 +199,12 @@ class _Logger:
             self._sep.removeHandler(handler)
         logging.shutdown()
 
-    def __enter__(self) -> '_Logger':
+    def __enter__(self) -> 'Logger':
         self.separator_line()
         return self
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
         self.separator_line()
         self.close()
-
-def Logger(
-        name: str,
-        log_dir_path: PathLike=None,
-        max_backup_count: int | None=None,
-        separator_char: str='=',
-        format: str='%(name)s - %(levelname)s - %(message)s'
-    ) -> '_Logger':
-    name = name.split('.')[-1]
-    for existing_logger in _Logger.all_loggers:
-        if existing_logger.name == name:
-            return existing_logger 
-    return _Logger(
-        name=name,
-        log_dir_path=log_dir_path,
-        max_backup_count=max_backup_count,
-        separator_char=separator_char,
-        format=format
-    )
 
 

@@ -1,1 +1,1 @@
-from .display import Logger, LoggerConfig, _Logger, logging
+from .display import Logger, LoggerConfig, Logger, logging
