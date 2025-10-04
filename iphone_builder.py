@@ -49,6 +49,11 @@ try:
             shutil.rmtree(UNZIPPED_FOLDER)
             os.remove(ZIP)
             
+            # Restore .env file if it was read
+            if env_content is not None:
+                with open(env_file, 'w') as f:
+                    f.write(env_content)
+            
             requirements_path = os.path.join(folder, 'requirements.txt')
             if os.path.exists(requirements_path):
                 # Use --use-deprecated=legacy-resolver to avoid dependency conflicts with unstable module mega.py
@@ -61,8 +66,6 @@ try:
             
             # Restore .env file if it was read
             if env_content is not None:
-                with open(env_file, 'w') as f:
-                    f.write(env_content)
                 print('SUCCESS:Project built successfully and .env file restored.')
             else:
                 print('SUCCESS:Project built successfully.')
